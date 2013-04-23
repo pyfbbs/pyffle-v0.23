@@ -74,6 +74,9 @@ class PyffleModule:
 			self.data.util.println("{0:29} ".format("ACL: ^" + str(aclid) + "^") + str(theAcl.description))
 			grants = self.data.getAclGrants(aclid)
 			denies = self.data.getAclDenies(aclid)
+#			print "G=" + str(grants)
+#			print "D=" + str(denies)
+			
 			groupdenies = []
 			groupgrants = []
 			if not username == "":
@@ -82,19 +85,19 @@ class PyffleModule:
 			self.data.stateChange("useredit_editaclgrantsstart")
 			self.data.util.println("{0:15} ".format("\nGRANT: "))
 			for theGrant in grants:
-				self.data.util.printn("  " + theGrant[0])
+				self.data.util.printn("  " + theGrant[0] + "," + theGrant[1])
 			self.data.util.println("{0:15} ".format("\nGRANT (Group): "))
 			for theGrant in groupgrants:
-				self.data.util.printn("  " + theGrant[0])
+				self.data.util.printn("  " + theGrant[0] + "," + theGrant[1])
 			self.data.stateChange("useredit_editaclgrantsend")
 			
 			self.data.stateChange("useredit_editacldeniesstart")
 			self.data.util.println("{0:15} ".format("\nDENY: "))
 			for deny in denies:
-				self.data.util.println("  " + deny[0])
+				self.data.util.println("  " + deny[0] + "," + deny[1])
 			self.data.util.println("{0:15} ".format("\nDENY (Group): "))
 			for deny in groupdenies:
-				self.data.util.println("  " + deny[0])
+				self.data.util.println("  " + deny[0] + "," + deny[1])
 			self.data.util.println("\n")
 			self.data.stateChange("useredit_editacldeniesend")
 			self.data.stateChange("useredit_editaclheaderend")

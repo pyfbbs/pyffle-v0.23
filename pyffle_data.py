@@ -717,12 +717,11 @@ class PyffleData:
 		myBoard.minreadlevel = minreadlevel
 		myBoard.minpostlevel = minpostlevel
 		myBoard.minoplevel = minoplevel
-		if aclid == None:
-			myAcl = self.createAcl()
-			myAcl.description="BOARD: "+name
-			self.getSession().add(myAcl)
-			self.getSession().commit()					
-			aclid = myAcl.id
+		myAcl = self.createAcl()
+		myAcl.description="BOARD: "+name
+		self.getSession().add(myAcl)
+		self.getSession().commit()					
+		aclid = myAcl.id
 		myBoard.aclid = aclid
 		self.getSession().add(myBoard)
 		self.getSession().commit()
